@@ -26,8 +26,7 @@ class PartnerTestCase(unittest.TestCase):
         except Exception as e:
             print(str(e))
             db.session.rollback()
-            #return 'Se produjo un error al efectuar los cambios',409
-        
+                    
     def tearDown(self):
         '''Deleting Testing Data'''
         print('Deleting Testing Data')
@@ -64,8 +63,6 @@ class PartnerTestCase(unittest.TestCase):
         print("\n- Post Creating Service \n")
         client = app.test_client(self)
         plan = Plans.query.filter(Plans.short_name.like('Test%')).first()
-        #print("plan-")
-        #print(plan)
         body = {"id":uuid.uuid4(), "type": "virtual", "description":"TestMedico", "plans":plan.id}
         res = client.post('/partner/service', json=body, headers={"uuid":"00000000-0000-0000-0000-000000000000" }, content_type='application/json')
         self.assertEqual(res.status_code, 201)
