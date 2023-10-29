@@ -7,6 +7,9 @@ from src.models.models import  Plans, Services, PlansServices, ServicesSchema, d
 import json
 
 class PartnerTestCase(unittest.TestCase):
+    
+    FILTER_VAR = 'Test%'
+    
     def setUp(self):
         '''Creating Testing Data'''
         print('Creating Testing Data')
@@ -30,13 +33,13 @@ class PartnerTestCase(unittest.TestCase):
         print('Deleting Testing Data')
         try:
             
-            services = Services.query.filter(Services.description.like('Test%')).all()
+            services = Services.query.filter(Services.description.like(self.FILTER_VAR)).all()
 
             for service in services:
                 PlansServices.query.filter(PlansServices.id_service.__eq__(service.id)).delete()
             
-            Services.query.filter(Services.description.like('Test%')).delete()
-            Plans.query.filter(Plans.short_name.like('Test%')).delete()    
+            Services.query.filter(Services.description.like(self.FILTER_VAR)).delete()
+            Plans.query.filter(Plans.short_name.like(self.FILTER_VAR)).delete()    
             
             db.session.commit()
         except Exception as e:

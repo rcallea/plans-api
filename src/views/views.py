@@ -27,8 +27,6 @@ class ViewPlans(Resource):
 
 class ViewServices(Resource):
     def get(self):
-        #print('get method Service API')
-        #print(Services.query.all())
         return [servicesWithPlans_schema.dump(ca) for ca in Services.query.all()]
             
     def post(self):
