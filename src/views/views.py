@@ -20,7 +20,6 @@ class ViewPlans(Resource):
             return [plansWithServices_schema.dump(p) for p in Plans.query.order_by(asc(Plans.price)).all()]
 
         except HTTPError as err:
-            #print(err.response.status_code)
             print(err.response.text)
             return {'message': 'error getting plans'}, 500
 
@@ -47,8 +46,6 @@ class ViewServices(Resource):
 
             db.session.add(new_service)
             db.session.commit()
-            #print('new service')
-            #print(new_service)
         except IntegrityError as e:
             db.session.rollback()
             return 'El servicio ya existe',409
