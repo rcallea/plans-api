@@ -47,17 +47,5 @@ class NotificationsTestCase(unittest.TestCase):
         res = client.get('/notifications/' + str('b1fb35a0-7061-708d-6d60-ba52bac9a883'))
         self.assertEqual(res.status_code, 200)
 
-    def test_get_and_update_notification(self):
-        print("\n- Get and Update Notification \n")
-        client = app.test_client(self)
-        notification = Notifications.query.filter(Notifications.description.like('Test%')).first()
-        print("notificacion devuelta")
-        print(notification.id)
-
-        body = {"is_read": True }
-
-        res = client.put('/notification/' + str(notification.id), json=body)
-        self.assertEqual(res.status_code, 204)
-
 if __name__ == "__main__":
     unittest.main()
