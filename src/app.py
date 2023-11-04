@@ -13,7 +13,7 @@ db.create_all()
 
 CORS(app)
 api = Api(app)
-api.add_resource(ViewPlans, '/plans')
+api.add_resource(ViewPlans, '/plans') #obtiene planes
 api.add_resource(ViewServices, '/partner/service')
 api.add_resource(ViewService, '/partner/service/<uuid:uuid_service>')
 api.add_resource(ViewNotifications, '/notifications/<uuid:id_sportman>') # obtiene las notificaciones del deportista
