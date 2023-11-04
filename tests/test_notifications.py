@@ -58,3 +58,6 @@ class NotificationsTestCase(unittest.TestCase):
 
         res = client.put('/notification/' + str(notification.id), json=body)
         self.assertEqual(res.status_code, 204)
+
+if __name__ == "__main__":
+    unittest.main()
