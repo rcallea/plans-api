@@ -98,6 +98,16 @@ class SportMan(db.Model):
     antiquity = db.Column(db.Integer)
     plan = db.Column(UUID())
 
+class Trainer(db.Model):
+    id = db.Column(UUID(), primary_key=True, autoincrement=False)
+    name = db.Column(db.String(512))
+
+class TrainerSchema(SQLAlchemyAutoSchema):
+    class Meta:
+        model = Trainer
+        include_relationships = True
+        load_instance = True
+        
 class SportManSchema(SQLAlchemyAutoSchema):
     class Meta:
          model = SportMan
